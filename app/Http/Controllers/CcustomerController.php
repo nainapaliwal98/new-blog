@@ -27,7 +27,7 @@ class CcustomerController extends Controller
     // dd($request->all());
 
     $ccustomer = new Ccustomer;
-    $ccustomer->name = $request->input('name');
+    $ccustomer->user_name = $request->input('name');
     $ccustomer->email = $request->input('email');
     $ccustomer->password = md5($request->input('password'));
     $ccustomer->save();

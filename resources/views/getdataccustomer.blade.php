@@ -10,7 +10,14 @@
     <!-- Link the "New Register" button to the register route -->
 
     <a href="{{ route('ccustomer') }}" <button class ="btn btn-primary">ADD</button></a>
-   
+
+    <!-- {{session()->get('user_name')}} // when we have session -->
+    <!-- now when we do not have session then  -->
+        @if (session()->has('user_name'))
+            {{session()->get('user_name')}}
+        @else 
+             Guest
+        @endif
     <table border="1">
         <thead>
             <tr>
@@ -24,7 +31,7 @@
         <tbody>
             @foreach($ccustomers as $ccustomer)
             <tr>
-                <td>{{ $ccustomer->name }}</td>
+                <td>{{ $ccustomer->user_name }}</td>
                 <td>{{ $ccustomer->email }}</td>
                 <td>{{ $ccustomer->password }}</td>
                 <td> 

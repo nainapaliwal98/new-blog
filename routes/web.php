@@ -11,6 +11,33 @@ use App\Models\Student;
 use App\Http\Controllers\StudentController;
 use App\Models\Clothes;
 use App\Http\Controllers\ClothesController;
+use Illuminate\Http\Request;
+
+Route::get('get-all-session',function()
+{
+    $session = session()->all();
+    p($session);
+});
+
+Route::get('set-session',function (Request $request){
+    $request->session()->put('user_name', 'NainaPaliwal');
+    $request->session()->put('user_id', '789');
+    $request->session()->flash('status','Success');
+    return redirect('get-all-session');
+});
+
+Route::get('destroy-session', function(){
+    session()->forget(['user_name', 'user_id']);
+    // session()->forget('user_id');
+    return redirect('get-all-session');
+});
+
+
+
+
+
+
+
 
 Route::get('/clothes/create', [ClothesController::class, 'create'])->name('create.clothes');
 Route::get('/clothes/list', [ClothesController::class, 'list']);
